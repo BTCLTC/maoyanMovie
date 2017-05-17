@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>maoyan</title>
+	<meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0" />
+	<script>
+		var dpr, rem, scale;
+		var docEl = document.documentElement;
+		var fontEl = document.createElement('style');
+		var metaEl = document.querySelector('meta[name="viewport"]');
+		dpr = window.devicePixelRatio || 1;
+		rem = docEl.clientWidth * dpr / 10;
+		scale = 1 / dpr;
+		// 设置viewport，进行缩放，达到高清效果
+		metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
+		// 设置data-dpr属性，留作的css hack之用
+		docEl.setAttribute('data-dpr', dpr);
+		// 动态写入样式
+		// docEl.firstElementChild.appendChild(fontEl);
+		// fontEl.innerHTML = 'html{font-size:' + rem + 'px!important;}';
+
+
+
+
+		var remResize = {
+			fn: function (maxWidth, maxSize) {
+				if (!arguments[0]) {
+					document.getElementsByTagName('html')[0].style.fontSize = window.innerWidth / 10 + 'px';
+				} else if (window.innerWidth < maxWidth) {
+					document.getElementsByTagName('html')[0].style.fontSize = window.innerWidth / 10 + 'px';
+				} else {
+					document.getElementsByTagName('html')[0].style.fontSize = maxSize+'px';
+				};
+				window.rem=window.innerWidth / 10;
+			},
+			timer: null
+		}
+		remResize.fn();
+		window.onresize = function () {
+			clearInterval(remResize.timer);
+			remResize.timer = setTimeout(remResize.fn, 200);
+		}
+	</script>
+</head>
+
+<body>
+	<div id="app"></div>
+	<!-- built files will be auto injected -->
+</body>
+
+</html>
