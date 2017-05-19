@@ -3,7 +3,7 @@
 		<div id="movieBg">
 			<img :src="movieList[movieListIndex].images.medium" alt=""> </div>
 		<div id="movieListBox">
-			<div id="movieList" class="row" v-bind:style="'width:'+(7.46+(movieList.length*2.54))+'rem;left:'+this.movieListTouch.left+'px;'" @touchstart='movieListTouchFn' @touchmove='movieListTouchFn' @touchend='movieListTouchFn'>
+			<div id="movieList" class="row" :style="{width:(7.46+(movieList.length*2.54))+'rem',left:movieListTouch.left+'px'}"  @touchstart='movieListTouchFn' @touchmove='movieListTouchFn' @touchend='movieListTouchFn'>
 				<template v-for="(items,index) in movieList">
 					<img v-bind:src="items.images.medium" :class="{movieListImgTransition:index===movieListIndex}" alt=""> </template>
 			</div>
