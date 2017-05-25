@@ -123,7 +123,6 @@ export default {
             this.global.waiting = false;
         })
         this.$http.get('http://121.196.214.248:8081/v2/movie/subject/' + this.$route.params.id + '/photos?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=10').then(function (d) {
-            console.log(d.data);
             this.movieImg=d.data.photos;
         })
     }
@@ -210,8 +209,9 @@ export default {
 
 #movieDes {
     background-color: white;
+    position: relative;
     >p {
-        padding: .27rem .4rem 0 .4rem;
+        padding: .27rem .4rem .27rem .4rem;
         line-height: .66rem;
         font-size: .36rem;
         overflow: hidden;
@@ -221,6 +221,9 @@ export default {
         border: 0;
         background-color: white;
         font-size: .4rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
     }
 }
 
@@ -304,12 +307,16 @@ export default {
     text-indent: .4rem;
 }
 
-#popularComments>div {
+#popularComments>div{
     position: relative;
     margin-left: 1.52rem;
     width: 8.48rem;
-    border-bottom: 1px solid #dcdcdc;
+    
     padding: 0.37rem 0.5rem 0.37rem 0;
+
+}
+#popularComments>div+div {
+    border-top: 1px solid #dcdcdc;
 }
 
 #popularComments .headImg {

@@ -5,7 +5,7 @@
             <div id="topNavM">
                 <div>
                     <span>热映</span>
-                    <span>待映</span>
+                    <span @click="dyFn">待映</span>
                 </div>
 
             </div>
@@ -55,6 +55,11 @@
         data: function () {
             return {
                 movieList:[]
+            }
+        },
+        methods:{
+            dyFn(){
+                alert('没有数据');
             }
         },
 
